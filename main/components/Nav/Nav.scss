@@ -6,7 +6,8 @@
     text-decoration: none;
     font-size: 1.2rem;
     border: none;
-    padding: 10px 10px;
+    height: 75px;
+    // padding: 10px 10px 0 10px;
     background-color: rgba(128, 128, 128, 0.1);
     &:hover{
         background-color: rgba(128, 128, 128, 0.2);
@@ -16,8 +17,12 @@
     .link{
         text-decoration: none;
         color: azure;
+        height: 75px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
         &:hover{
-            background-color: red;
+            background-color: rgb(180, 49, 49);
         }
     }
 
@@ -28,6 +33,9 @@
         text-decoration: none;
         font-size: 2.4rem;
         font-weight: 900;
+        &:hover{
+            color: azure;
+        }
     }
 
     ul{
@@ -39,6 +47,14 @@
 
     li{
         padding: 0 30px;
+        height: 75px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-radius: 5px;
+        &:hover{
+            background-color: rgb(180, 49, 49);
+        }
     }
 
     input{
@@ -67,6 +83,21 @@
     .loggedInfoContainer{
         display: flex;
         align-items: center;
+        justify-content: center;
+        height: 75px;
+        width: 200px;
+        margin-right: 10px;
+        border-radius: 5px;
+        &:hover{
+            background-color: rgb(180, 49, 49);
+        }
+    }
+
+    .accountContainer{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 75px;
     }
 
     .avatar{
@@ -75,7 +106,12 @@
         border-radius: 15px;
         margin-right: 10px;
     }
+
+    .logIn, .logOut{
+        width: 100px;
+    }
     
+   
 
 
 }

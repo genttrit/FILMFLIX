@@ -29,7 +29,10 @@ function LogIn() {
 
   return (
     <div className='logInContainer'>
-      <LogInBanner userData={userData} handleSetUsername={handleSetUsername}/>
+      <LogInBanner 
+                  userData={userData} 
+                  username={username}
+                  setUsername={setUsername}/>
     </div>
   )
 }

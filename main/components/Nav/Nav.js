@@ -23,7 +23,8 @@ function Nav({username, setUsername}) {
   }
 
   const handleLogOut = (e) =>{
-    console.log('logout')
+    
+    setUsername('');
   } 
 
 
@@ -65,18 +66,18 @@ function Nav({username, setUsername}) {
 
       {(username.length > 0) ? (
         <>
-        <div className="loggedInfoContainer" onClick={e => handleLogOut(e)}>
+        <div className="accountContainer">
+        <div className="loggedInfoContainer">
           <p className='loggedMsg'>HI {username.toLocaleUpperCase()}</p>
           <img className='avatar' src="../files/avatar-logo.png"></img>
         </div>
-        <div>
-          <Link  className="link" to="/">
+         <Link onClick={e => handleLogOut(e)} className="link logOut" to="/">
             Log out
           </Link>
         </div>
         </>
         ) : (
-          <Link  className="link" to="/login">
+          <Link  className="link logIn" to="/login">
             Log in
           </Link>
         )}
