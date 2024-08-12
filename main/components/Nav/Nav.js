@@ -1,0 +1,87 @@
+import React from "react";
+import "./Nav.scss";
+import { Link } from "react-router-dom";
+import { useState, useRef } from "react";
+import { AppContext } from "../../app";
+
+
+function Nav({username, setUsername}) {
+
+  const [searchBar, setSearchBar] = useState(false);
+  const inputRef = useRef();
+  //{current: undefined}
+
+
+  const handleSearchBar = (e) =>{
+    e.preventDefault();
+    setSearchBar(prevState =>!prevState);
+    setTimeout(() => {
+      if (!searchBar) {
+        inputRef.current.focus();
+      }
+    }, 0);
+  }
+
+  const handleLogOut = (e) =>{
+    console.log('logout')
+  } 
+
+
+  return (
+    <nav className="navContainer">
+      <ul>
+        <li>
+          <Link className="link" to="/home">
+            <p className="logo">FILMFLIX</p>
+          </Link>
+        </li>
+        <li>
+          <Link className="link" to="/favorites">
+            My Favorites
+          </Link>
+        </li>
+        <li>
+          <Link className="link" to="/">
+            {searchBar ? (
+              <input ref={inputRef} 
+                      type="text" 
+                      onBlur={e =>handleSearchBar(e)} 
+                      placeholder="Search your movie here.." />
+            ) : (
+              <svg onClick={e => handleSearchBar(e)}
+                xmlns="http://www.w3.org/2000/svg"
+                height="25px"
+                viewBox="0 0 24 24"
+                width="25px"
+                fill="white"
+              >
+                <path d="M0 0h24v24H0z" fill="none" />
+                <path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z" />
+              </svg>
+            )}
+          </Link>
+        </li>
+      </ul>
+
+      {(username.length > 0) ? (
+        <>
+        <div className="loggedInfoContainer" onClick={e => handleLogOut(e)}>
+          <p className='loggedMsg'>HI {username.toLocaleUpperCase()}</p>
+          <img className='avatar' src="../files/avatar-logo.png"></img>
+        </div>
+        <div>
+          <Link  className="link" to="/">
+            Log out
+          </Link>
+        </div>
+        </>
+        ) : (
+          <Link  className="link" to="/login">
+            Log in
+          </Link>
+        )}
+    </nav>
+  );
+}
+
+export default Nav;

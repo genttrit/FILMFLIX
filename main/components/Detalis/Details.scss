@@ -1,0 +1,75 @@
+.containerDetalis{
+    background-color: red;
+    position: fixed;
+    width: 900px;
+    height: 80vh;
+    border-radius: 10px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 10000;
+    background-size: cover;
+
+    .contentContainer{
+        position:absolute;
+        top: 30%;
+        left: 5%;
+        width: 40%;
+        height: auto;
+        max-height: 70%;
+        padding: 25px 20px;
+        background-color: rgba(240, 255, 255, 0.759);
+        border-radius: 3px;
+        display: flex;
+        justify-content: space-around;
+        flex-direction: column;
+        color: rgb(0, 0, 0);
+    }
+
+    .closeBtn{
+        border-radius: 50%;
+        width: 25px;
+        height: 25px;
+        border: none;
+        position: absolute;
+        right: 10px;
+        top: 10px;
+        font-weight: 900;
+        &:hover{
+            background-color: black;
+            color: red;
+        }
+    }
+
+    p{
+        margin: 10px 0;
+    }
+
+    .btnContainer{
+        font-size: 10px;
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        button{
+            border-radius: 3px;
+            border: none;
+            padding: 5px;
+            display: flex;
+            justify-content: space-evenly;
+            align-items: center;
+         
+            height: 35px;
+            &:hover{
+                opacity: 1;
+            }
+        }
+    
+        .btnFavorite{
+            background-color: azure;
+        }
+        .btnDetails{
+            background-color: rgba(128, 128, 128, 0.5);
+            color: white;
+        }
+    }
+}
