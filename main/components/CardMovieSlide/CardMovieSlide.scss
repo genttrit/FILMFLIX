@@ -1,0 +1,16 @@
+
+.cardContainer{
+    width: 220px;
+    height: 180px;
+    margin: 10px;
+}
+
+
+.cardImg{
+    background-size: cover;
+    height: 180px;
+    &:hover{
+        width: 300px;
+        z-index: 100;
+    }
+}

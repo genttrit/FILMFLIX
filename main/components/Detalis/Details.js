@@ -2,21 +2,21 @@ import React, { useContext, useState } from "react";
 import "./Details.scss";
 
 
-function Details({details, handleDetailsPopUp}) {
+function Details({details, movie, handleDetailsPopUp}) {
   
   return (
     details && (
       <div
         className="containerDetalis"
         style={{
-          backgroundImage: `url(${"https://getwallpapers.com/wallpaper/full/5/2/3/1363181-hd-wallpaper-1920x1080-of-movies-1920x1080-for-mac.jpg"})`,
+          backgroundImage: `url(https://image.tmdb.org/t/p/w1280${movie.backdrop_path})`
         }}
       >
         <button className="closeBtn" onClick={(e) => handleDetailsPopUp(e)}>
           X
         </button>
         <div className="contentContainer">
-          <h2>Tite</h2>
+          <h2>{movie.original_title} - {movie.release_date.substring(0,4)}</h2>
           <p>
             Lorem Ipsum is simply dummy text of the printing and typesetting
             industry. Lorem Ipsum has been the industry's standard dummy text

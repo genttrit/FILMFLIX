@@ -5,16 +5,16 @@ import { useState, useRef } from "react";
 import { AppContext } from "../../app";
 
 
-function Nav({username, setUsername}) {
+function Nav({ username, setUsername }) {
 
   const [searchBar, setSearchBar] = useState(false);
   const inputRef = useRef();
   //{current: undefined}
 
 
-  const handleSearchBar = (e) =>{
+  const handleSearchBar = (e) => {
     e.preventDefault();
-    setSearchBar(prevState =>!prevState);
+    setSearchBar(prevState => !prevState);
     setTimeout(() => {
       if (!searchBar) {
         inputRef.current.focus();
@@ -22,10 +22,15 @@ function Nav({username, setUsername}) {
     }, 0);
   }
 
-  const handleLogOut = (e) =>{
-    
+  const handleLogOut = (e) => {
+
     setUsername('');
-  } 
+  }
+
+  const handleProfile = (e) => {
+    //steate me shtu ne app.js, 
+    //prej Home tek Banner pastaj tek Nav me props
+  }
 
 
   return (
@@ -44,10 +49,10 @@ function Nav({username, setUsername}) {
         <li>
           <Link className="link" to="/">
             {searchBar ? (
-              <input ref={inputRef} 
-                      type="text" 
-                      onBlur={e =>handleSearchBar(e)} 
-                      placeholder="Search your movie here.." />
+              <input ref={inputRef}
+                type="text"
+                onBlur={e => handleSearchBar(e)}
+                placeholder="Search your movie here.." />
             ) : (
               <svg onClick={e => handleSearchBar(e)}
                 xmlns="http://www.w3.org/2000/svg"
@@ -66,21 +71,21 @@ function Nav({username, setUsername}) {
 
       {(username.length > 0) ? (
         <>
-        <div className="accountContainer">
-        <div className="loggedInfoContainer">
-          <p className='loggedMsg'>HI {username.toLocaleUpperCase()}</p>
-          <img className='avatar' src="../files/avatar-logo.png"></img>
-        </div>
-         <Link onClick={e => handleLogOut(e)} className="link logOut" to="/">
-            Log out
-          </Link>
-        </div>
+          <div className="accountContainer">
+            <div onClick={e => handleProfile(e)} className="loggedInfoContainer">
+              <p className='loggedMsg'>HI {username.toLocaleUpperCase()}</p>
+              <img className='avatar' src="../files/avatar-logo.png"></img>
+            </div>
+            <Link onClick={e => handleLogOut(e)} className="link logOut" to="/">
+              Log out
+            </Link>
+          </div>
         </>
-        ) : (
-          <Link  className="link logIn" to="/login">
-            Log in
-          </Link>
-        )}
+      ) : (
+        <Link className="link logIn" to="/login">
+          Log in
+        </Link>
+      )}
     </nav>
   );
 }
