@@ -13,32 +13,62 @@ export const AppContext = createContext();
 function App() {
     const [details, setDetails] = useState(false);
     const [username, setUsername] = useState('');
-    // const [bannerMovie, setBannerMovie] = useState('');
+    const [allUserData, setAllUserData] = useState([]);
 
-    // const apiKey = 'd165967b6b2897b819c9bfc9f9a64ba4';
-    // const baseUrl = 'https://api.themoviedb.org/3';
-    // const category = 'movie/popular';
+    useEffect(()=>{
+        const fetchAllUserData = async () => {
+            try{
+                const resp = await fetch('http://localhost:3000/users');
+                const data = await resp.json();
+                console.log(data);
+                setAllUserData(data);
+            }
+            catch(err){
+                console.log(err);
+            }
+        }
+        fetchAllUserData();
+    },[]);
 
-    // useEffect(() => {
-    //     const fetchInfo = async () => {
-    //         try {
-    //             const respMostPopular = await fetch(`${baseUrl}/${category}?api_key=${apiKey}`);
-    //             const dataMostPopular = await resp.json();
-    //             setBannerMovie(dataMostPopular.results[0]);
-    //             // console.log(dataMostPopular.results[0]);
-    //         }
-    //         catch (err) {
-    //             console.log(err);
-    //         }
-    //     }
-    //     fetchInfo();
-    // }, [])
 
-   
+
+    const handleFavoriteMoviesButton = async (user, newFavorite) => {
+        
+        // console.log(allUserData);
+        const currentUser = allUserData.filter((e)=> e.username === user)[0];
+
+        if (!currentUser) {
+            console.error('Please log in');
+            // Redirect to login page
+            return;
+        }
+        console.log(currentUser, currentUser.favorites)
+
+        try {
+            console.log('PUT :', user)
+            const updatedFavorites = [...currentUser.favorites, newFavorite];
+            const response = await fetch(`http://localhost:3000/users/${currentUser.id}`, {
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ ...currentUser,
+                                    favorites: updatedFavorites })
+            });
+        }
+
+        catch (err) {
+            console.log('there was an error with the update request', err);
+        }
+    }
+
+
 
     return (<AppContext.Provider value={{
         details, setDetails,
-        username, setUsername
+        username, setUsername,
+        allUserData, setAllUserData,
+        handleFavoriteMoviesButton
     }}>
         <HashRouter>
             <Routes>

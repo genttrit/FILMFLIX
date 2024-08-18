@@ -20,7 +20,7 @@ function CategoryCard({category, title,details, handleDetailsPopUp}) {
             const resp = await fetch(`${baseUrl}/${category}?api_key=${apiKey}`);
             const apidata = await resp.json();
 
-            console.log('test' + apidata.results);
+            // console.log('test' + apidata.results);
             setMovies(apidata.results);
         }
         catch (err) {
@@ -67,7 +67,8 @@ let settings = {
     <div className="CategoryCardContainer">
     <h3 style={{margin: '10px'}}>{title}</h3>
     <Slider {...settings}>
-      {movies.map((e,i)=><CardMovieSlide 
+      {movies.map((e,i)=><CardMovieSlide
+      key={e.id} 
       details={details} 
       movie={e} 
       handleDetailsPopUp={(e) => handleDetailsPopUp(e)}/>)}

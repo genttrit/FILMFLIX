@@ -1,0 +1,57 @@
+.FooterContainer{
+    height: 180px;
+    padding: 15px 30px;
+    color: azure;
+
+    .footer-content{
+        display: flex;
+        justify-content: space-between;
+        padding: 5px 30px 5px 30px;
+    }
+
+
+
+    .footer-links{
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        gap: 20px;
+        width: 400px;
+        
+        a{
+            text-decoration: none;
+            
+        }
+        
+        
+        span{
+            width: 40px;
+            height: 20px;
+            color: azure;
+            transition: fill 0.3s ease;
+            &:hover{
+                color: rgb(180, 49, 49);
+            }
+        }
+    }
+
+    .social-logos{
+        padding: 15px;
+        display: flex;
+        gap: 15px;
+
+        .social-link {
+            svg {
+              fill: azure;
+              transition: fill 0.3s ease;
+      
+              &:hover {
+                fill: rgb(180, 49, 49);
+              }
+            }
+        }
+    }
+}
+
+
+
