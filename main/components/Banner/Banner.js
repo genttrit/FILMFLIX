@@ -3,19 +3,20 @@ import "./Banner.scss";
 import Nav from "../Nav/Nav";
 import Details from "../Detalis/Details";
 
+
 function Banner({ details, handleDetailsPopUp, username, setUsername, bannerMovie }) {
   return (
 
     <>
-      <Details details={details} movie={bannerMovie} handleDetailsPopUp={handleDetailsPopUp} />
+      {/* <Details details={details} movie={bannerMovie} handleDetailsPopUp={handleDetailsPopUp} /> */}
       <div  style={{backgroundImage: `url(https://image.tmdb.org/t/p/w1280${bannerMovie.backdrop_path})`}}
             className="bannerContainer">
         <Nav username={username}
           setUsername={setUsername} />
         <div className="container">
           <div>
-            <h2>{bannerMovie.original_title}</h2>
-            <p>{bannerMovie.overview}</p>
+            <h1>{bannerMovie.original_title}</h1>
+            {/* <p>{bannerMovie.overview}</p> */}
           </div>
           <div className="btnContainer">
             <button className="btnFavorite">
@@ -32,7 +33,7 @@ function Banner({ details, handleDetailsPopUp, username, setUsername, bannerMovi
               Favorite
             </button>
 
-            <button onClick={e => handleDetailsPopUp(e)}
+            <button onClick={() => handleDetailsPopUp(bannerMovie)}
               className="btnDetails">
               <svg
                 xmlns="http://www.w3.org/2000/svg"

@@ -1,16 +1,51 @@
-
-.cardContainer{
-    width: 220px;
-    height: 180px;
-    margin: 10px;
-}
-
-
-.cardImg{
+.cardContainer {
     background-size: cover;
-    height: 180px;
-    &:hover{
+    background-position: center;
+    height: 180px;  
+    width: 250px;
+    position: relative; 
+    transition: all 0.5s ease;
+    
+    &:hover {
         width: 300px;
-        z-index: 100;
+        transition: width 0.5s;
+        z-index: 10;
+        transform: translate(-5%,0);
+        box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.3);
     }
+
+    .CardButtons {
+        position: absolute;
+        bottom: 10px;  
+        left: 10px;  
+        display: flex;
+        gap: 10px; 
+        opacity: 0;
+        transition: opacity 0.5s ease;
+        
+        button {
+            background: none;
+            padding: 5px;
+            border-radius: 5px;
+            cursor: pointer;
+            background-color: rgb(180, 49, 49);
+            border: 1px solid rgb(180, 49, 49);
+            &:hover{
+                
+            }
+        }
+
+        svg {
+            width: 24px;
+            height: 24px;
+            &:hover{
+                color: azure;
+            }
+        }
+    }
+
+    &:hover .CardButtons {
+        opacity: 1; 
+    }
+
 }

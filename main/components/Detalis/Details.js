@@ -3,6 +3,10 @@ import "./Details.scss";
 
 
 function Details({details, movie, handleDetailsPopUp}) {
+
+  if (!movie) {
+    return null; // or a fallback UI like a loader or a message
+  }
   
   return (
     details && (
@@ -12,18 +16,13 @@ function Details({details, movie, handleDetailsPopUp}) {
           backgroundImage: `url(https://image.tmdb.org/t/p/w1280${movie.backdrop_path})`
         }}
       >
-        <button className="closeBtn" onClick={(e) => handleDetailsPopUp(e)}>
+        <button className="closeBtn" onClick={handleDetailsPopUp}>
           X
         </button>
         <div className="contentContainer">
           <h2>{movie.original_title} - {movie.release_date.substring(0,4)}</h2>
           <p>
-            Lorem Ipsum is simply dummy text of the printing and typesetting
-            industry. Lorem Ipsum has been the industry's standard dummy text
-            ever since the 1500s, when an unknown printer took a galley of type
-            and scrambled it to make a type specimen book. It has survived not
-            only five centuries, but also the leap into electronic typesetting,
-            remaining essentially unchanged.
+            {movie.overview}
           </p>
           <div className="btnContainer">
             <button className="btnFavorite">

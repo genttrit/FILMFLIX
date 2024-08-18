@@ -4,6 +4,7 @@ import Banner from '../components/Banner/Banner'
 import Details from '../components/Detalis/Details';
 import { AppContext } from "../app";
 import CategoryCard from '../components/CategoryCard/CategoryCard';
+import '../styles/Home.scss'
 
 function Home() {
 
@@ -11,6 +12,7 @@ function Home() {
   const {username, setUsername} = useContext(AppContext);
 
   const [bannerMovie, setBannerMovie] = useState();
+  const [detailsMovie, setDetailsMovie] = useState();
 
 
   const apiKey = 'd165967b6b2897b819c9bfc9f9a64ba4';
@@ -24,6 +26,7 @@ function Home() {
             const randomNumber = Math.floor(Math.random() * 20)+1;
             console.log(apidata.results[randomNumber]);
             setBannerMovie(apidata.results[randomNumber]);
+            setDetailsMovie(apidata.results[randomNumber]);
         }
         catch (err) {
             console.log(err);
@@ -33,23 +36,28 @@ function Home() {
 }, [])
 
 
-  const handleDetailsPopUp = (e) => {
-    e.preventDefault();
-    // console.log(details)
+  const handleDetailsPopUp = (movie) => {
+    setDetailsMovie(movie);
     setDetails(prevState => !prevState);
   };
 
   console.log(details);
 
   return (
-    <>
+    <div className='HomeContainer'>
+        {details && <Details details={details}
+                              movie={detailsMovie}
+                              handleDetailsPopUp={handleDetailsPopUp} />}
         {bannerMovie && <Banner  details={details}
                 username={username}
                 setUsername={setUsername}
                 bannerMovie={bannerMovie}
                 handleDetailsPopUp={handleDetailsPopUp}/>}
-        <CategoryCard category={'movie/popular'} />
-    </>
+        <CategoryCard handleDetailsPopUp={handleDetailsPopUp} title='Popular now' category={'movie/popular'} />
+        <CategoryCard handleDetailsPopUp={handleDetailsPopUp} title='All time top rated' category={'movie/top_rated'} />
+        <CategoryCard handleDetailsPopUp={handleDetailsPopUp} title='Playing now in the cinema' category={'movie/now_playing'} />
+        <CategoryCard handleDetailsPopUp={handleDetailsPopUp} title='Upcomming soon...' category={'movie/upcoming'} />
+    </div>
   )
 }
 
