@@ -23,7 +23,7 @@ function Nav({ username, setUsername }) {
   }
 
   const handleLogOut = (e) => {
-
+    e.preventDefault();
     setUsername('');
   }
 

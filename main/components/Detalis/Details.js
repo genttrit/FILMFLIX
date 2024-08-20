@@ -10,7 +10,7 @@ function Details({details, movie, handleDetailsPopUp, handleFavoriteMoviesButton
 
   const handleAddToFavorites = (e) => {
     e.preventDefault();
-    handleFavoriteMoviesButton(username, movie);
+    handleFavoriteMoviesButton(e,username, movie);
     console.log('test')
   };
   

@@ -32,9 +32,9 @@ function App() {
 
 
 
-    const handleFavoriteMoviesButton = async (user, newFavorite) => {
+    const handleFavoriteMoviesButton = async (e,user, newFavorite) => {
         
-        // console.log(allUserData);
+        e.preventDefault();
         const currentUser = allUserData.filter((e)=> e.username === user)[0];
 
         if (!currentUser) {
