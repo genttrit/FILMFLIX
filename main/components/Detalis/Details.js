@@ -11,7 +11,7 @@ function Details({details, movie, handleDetailsPopUp, handleFavoriteMoviesButton
   const handleAddToFavorites = (e) => {
     e.preventDefault();
     handleFavoriteMoviesButton(e,username, movie);
-    console.log('test')
+    console.log('test');
   };
   
   return (
@@ -31,7 +31,7 @@ function Details({details, movie, handleDetailsPopUp, handleFavoriteMoviesButton
             {movie.overview}
           </p>
           <div className="btnContainer">
-            <button className="btnFavorite" onClick={e => handleAddToFavorites(e)}>
+            <button className="btnFavorite" onClick={(e) => handleAddToFavorites(e)}>
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 height="16px"

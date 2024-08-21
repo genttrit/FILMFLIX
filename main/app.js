@@ -15,12 +15,14 @@ function App() {
     const [username, setUsername] = useState('');
     const [allUserData, setAllUserData] = useState([]);
 
+    //Get all user data to database
     useEffect(()=>{
         const fetchAllUserData = async () => {
             try{
                 const resp = await fetch('http://localhost:3000/users');
                 const data = await resp.json();
                 console.log(data);
+                localStorage.setItem('users',data.stringify);
                 setAllUserData(data);
             }
             catch(err){
@@ -42,13 +44,14 @@ function App() {
             // Redirect to login page
             return;
         }
-        console.log(currentUser, currentUser.favorites)
+        console.log('kalohet IF', currentUser, currentUser.favorites)
 
         try {
             console.log('PUT :', user)
             const updatedFavorites = [...currentUser.favorites, newFavorite];
+            console.log('ne try:', updatedFavorites)
             const response = await fetch(`http://localhost:3000/users/${currentUser.id}`, {
-                method: 'PUT',
+                method: 'PATCH',
                 headers: {
                     'Content-Type': 'application/json'
                 },

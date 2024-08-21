@@ -39,6 +39,15 @@ function Home() {
     fetchInfo();
 }, []);
 
+useEffect(() => {
+  const storedUser = localStorage.getItem('user');
+  if (storedUser) {
+    console.log(storedUser);
+    // console.log(JSON.parse(storedUser));
+    setUsername(storedUser);
+  }
+}, []);
+
 // useEffect(() => {
 //   const fetchInfo = async () => {
 //       try {

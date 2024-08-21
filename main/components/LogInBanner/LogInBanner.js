@@ -5,12 +5,12 @@ import { useRef, useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
 
-function LogInBanner({userData,username, setUsername}) {
+function LogInBanner({userData}) {
   const [loginError, setLoginError] = useState(false);
   const navigate = useNavigate();
 
 
-  let [usernameInput,setUsernameInput] = useState('')
+  let [usernameInput,setUsernameInput] = useState('');
   let [passwordInput,setPasswordInput] = useState('');
 
   const inputRefEmail = useRef();
@@ -45,11 +45,18 @@ function LogInBanner({userData,username, setUsername}) {
   const handleLogInVerification = (e) =>{
     e.preventDefault();
     const user = userData.find((e)=>{
-      return (e.username === usernameInput && e.password === passwordInput)
-    })
+      if(e.username === usernameInput && e.password === passwordInput){
+        localStorage.setItem('user',e.username);
+        // console.log(e);
+        return true
+       }
+       else {
+        return false
+       }
+      })
     if(user){
-      console.log('successful login');
-      handleSetUsername(usernameInput);
+      // console.log('successful login');
+      // handleSetUsername(usernameInput);
       navigate('/home');
     } else {
       console.log('invalid data');
@@ -60,11 +67,19 @@ function LogInBanner({userData,username, setUsername}) {
   const handleKeyDownVerification = (e) =>{
     if (e.key === "Enter") {
       const user = userData.find((e)=>{
-        return (e.username === usernameInput && e.password === passwordInput)
+         if(e.username === usernameInput && e.password === passwordInput){
+          localStorage.setItem('user',e.username)
+          // console.log(e);
+          return true
+         }
+         else {
+          return false
+         }
       })
       if(user){
         console.log('successful login');
-        setUsername(usernameInput);
+        // localStorage.setItem('username',usernameInput)
+        // setUsername(usernameInput);
         navigate('/home');
       } else {
         console.log('invalid data');
