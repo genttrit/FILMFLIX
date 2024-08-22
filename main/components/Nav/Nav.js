@@ -1,11 +1,14 @@
 import React from "react";
 import "./Nav.scss";
-import { Link } from "react-router-dom";
+import { Link, useNavigate  } from "react-router-dom";
 import { useState, useRef } from "react";
 import { AppContext } from "../../app";
 
 
+
 function Nav({ username, setUsername }) {
+
+  const navigate = useNavigate();
 
   const [searchBar, setSearchBar] = useState(false);
   const inputRef = useRef();
@@ -24,7 +27,9 @@ function Nav({ username, setUsername }) {
 
   const handleLogOut = (e) => {
     e.preventDefault();
-    setUsername('');
+    // setUsername('');
+    localStorage.setItem('user','');
+    navigate('/login');
   }
 
   const handleProfile = (e) => {

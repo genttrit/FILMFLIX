@@ -21,8 +21,8 @@ function App() {
             try{
                 const resp = await fetch('http://localhost:3000/users');
                 const data = await resp.json();
-                console.log(data);
-                localStorage.setItem('users',data.stringify);
+                // console.log(data);
+                // localStorage.setItem('users',data.stringify);
                 setAllUserData(data);
             }
             catch(err){
@@ -44,13 +44,11 @@ function App() {
             // Redirect to login page
             return;
         }
-        console.log('kalohet IF', currentUser, currentUser.favorites)
 
         try {
-            console.log('PUT :', user)
-            const updatedFavorites = [...currentUser.favorites, newFavorite];
-            console.log('ne try:', updatedFavorites)
-            const response = await fetch(`http://localhost:3000/users/${currentUser.id}`, {
+            if(!currentUser.favorites.some((movie)=> movie.id === newFavorite.id )){
+                const updatedFavorites = [...currentUser.favorites, newFavorite];
+                const response = await fetch(`http://localhost:3000/users/${currentUser.id}`, {
                 method: 'PATCH',
                 headers: {
                     'Content-Type': 'application/json'
@@ -58,6 +56,10 @@ function App() {
                 body: JSON.stringify({ ...currentUser,
                                     favorites: updatedFavorites })
             });
+            } else {
+                console.log('movie exists in database');
+                return;
+            }
         }
 
         catch (err) {

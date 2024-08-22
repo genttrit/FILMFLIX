@@ -1,19 +1,92 @@
-import React, {useState, useContext} from 'react'
+import React, { useState, useContext, useEffect } from 'react'
 import Nav from '../components/Nav/Nav'
+import FavoriteCard from '../components/FavoritesCard/FavoriteCard';
 import { AppContext } from "../app";
 import '../styles/Favorites.scss'
 
 function Favorites() {
-  const {username, setUsername} = useContext(AppContext);
+  const [favorites, setFavorites] = useState([]);
+  const {allUserData, setAllUserData} = useContext(AppContext);
+
+  const username = localStorage.getItem('user');
+  // console.log(username);
+
+  useEffect(() => {
+    const fetchFavoriteMovies = async () => {
+      try {
+        const resp = await fetch(`http://localhost:3000/users`);
+        const data = await resp.json();
+        // console.log(data);
+
+        const userObj = data.find(user => user.username === username);
+        if (userObj) {
+          setFavorites(userObj.favorites);
+        } else {
+          console.log('User not found');
+        }
+      } catch (err) {
+        console.log(err);
+      }
+    }
+    fetchFavoriteMovies();
+  }, [username]);
+
+  const handleRemoveFromFavorites = async (e, movieId) => {
+    e.preventDefault();
+    const currentUser = allUserData.filter((e)=> e.username === username)[0];
+
+    try {
+      const updatedFavorites = favorites.filter((movie)=>{
+        return movie.id !== movieId
+      });
+
+      const response = await fetch(`http://localhost:3000/users/${currentUser.id}`, {
+        method: 'PATCH',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          ...currentUser,
+          favorites: updatedFavorites
+        })
+      });
+    }
+
+    catch (err) {
+      console.log('there was an error with the update request', err);
+    }
+  }
+
+
   return (
-    <div className='favoritesContainer'>
-    <Nav username={username}
-          setUsername={setUsername} />
-          <div className='favoriteCardContainer'>
-            <div className='facoriteMovieCard'>
-              
+    <div className='FavoritesContainer'>
+      <Nav username={username}
+      // setUsername={setUsername}
+      />
+      <div className="favorite-card">
+        {favorites.length > 0 ? (
+          favorites.map(movie => (
+            <div key={movie.id}
+              className="movie-card">
+              <img src={`https://image.tmdb.org/t/p/w200${movie.poster_path}`} alt={movie.title} />
+              <div className='movie-content'>
+                <h3>{movie.title}</h3>
+                <h4>{movie.release_date.slice(0, 4)}</h4>
+                <p>{movie.overview}</p>
+              </div>
+              <div className='movie-remove'>
+                <button
+                  className='remove-movie-btn'
+                  onClick={(e) => handleRemoveFromFavorites(e,movie.id)}>
+                  Remove
+                </button>
+              </div>
             </div>
-          </div>
+          ))
+        ) : (
+          <div>No favorite movies found.</div>
+        )}
+      </div>
     </div>
   )
 }
