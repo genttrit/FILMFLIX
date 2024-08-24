@@ -8,7 +8,7 @@ import Slider from 'react-slick';
 
 
 
-function CategoryCard({category, title,details, handleDetailsPopUp}) {
+function CategoryCard({category, title,details, username, handleDetailsPopUp, handleFavoriteMoviesButton}) {
   const apiKey = 'd165967b6b2897b819c9bfc9f9a64ba4';
   const baseUrl = 'https://api.themoviedb.org/3';
   // const category = 'movie/popular';
@@ -71,7 +71,9 @@ let settings = {
       key={e.id} 
       details={details} 
       movie={e} 
-      handleDetailsPopUp={(e) => handleDetailsPopUp(e)}/>)}
+      username={username}
+      handleDetailsPopUp={(e) => handleDetailsPopUp(e)}
+      handleFavoriteMoviesButton={handleFavoriteMoviesButton}/>)}
     </Slider>
     </div>
   )

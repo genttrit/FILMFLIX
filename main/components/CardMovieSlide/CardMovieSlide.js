@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import './CardMovieSlide.scss'
 
 
-function CardMovieSlide({movie, handleDetailsPopUp}) {
+function CardMovieSlide({movie, username, handleDetailsPopUp,handleFavoriteMoviesButton}) {
     const [hovered, setHovered] = useState(false);
 
     const toogleHover = (state) =>{
@@ -18,7 +18,7 @@ function CardMovieSlide({movie, handleDetailsPopUp}) {
             }}
         >
             <div className='CardButtons'>
-                <button className="btnFavorite">
+                <button className="btnFavorite" onClick={(e)=> handleFavoriteMoviesButton(e,username, movie)}>
                     <svg
                         xmlns="http://www.w3.org/2000/svg"
                         height="32px"

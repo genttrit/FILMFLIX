@@ -1,8 +1,9 @@
 import React from "react";
 import "./Nav.scss";
 import { Link, useNavigate  } from "react-router-dom";
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import { AppContext } from "../../app";
+
 
 
 
@@ -11,11 +12,12 @@ function Nav({ username, setUsername }) {
   const navigate = useNavigate();
 
   const [searchBar, setSearchBar] = useState(false);
+  const [query, setQuery] = useState('');
   const inputRef = useRef();
   //{current: undefined}
 
-
-  const handleSearchBar = (e) => {
+  //Menjehere si klikon, me te dal me shkru
+  const handleSearchBarEffect = (e) => {
     e.preventDefault();
     setSearchBar(prevState => !prevState);
     setTimeout(() => {
@@ -37,6 +39,24 @@ function Nav({ username, setUsername }) {
     //prej Home tek Banner pastaj tek Nav me props
   }
 
+  const handleSearchBar = (e) => {
+    if (e.key === "Enter") {
+          navigate(`/search/${query}`, {state: { query }});
+          return true
+         }
+         else {
+          return false
+         }
+  }
+
+  useEffect(() => {
+    window.addEventListener("keydown", handleSearchBar);
+
+    return () => {
+      window.removeEventListener("keydown", handleSearchBar);
+    };
+  }, [query]);
+
 
   return (
     <nav className="navContainer">
@@ -52,14 +72,15 @@ function Nav({ username, setUsername }) {
           </Link>
         </li>
         <li>
-          <Link className="link" to="/">
+          <Link className="link" to="/search">
             {searchBar ? (
               <input ref={inputRef}
                 type="text"
-                onBlur={e => handleSearchBar(e)}
+                onBlur={e => handleSearchBarEffect(e)}
+                onChange={e => setQuery(e.target.value)}
                 placeholder="Search your movie here.." />
             ) : (
-              <svg onClick={e => handleSearchBar(e)}
+              <svg onClick={e => handleSearchBarEffect(e)}
                 xmlns="http://www.w3.org/2000/svg"
                 height="25px"
                 viewBox="0 0 24 24"

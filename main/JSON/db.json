@@ -4,7 +4,28 @@
       "id": "1",
       "username": "admin",
       "password": "admin",
-      "favorites": []
+      "favorites": [
+        {
+          "adult": false,
+          "backdrop_path": "/z1aZkp16kzguKi3BHKCuRGRNGq4.jpg",
+          "genre_ids": [
+            27,
+            878,
+            53
+          ],
+          "id": 762441,
+          "original_language": "en",
+          "original_title": "A Quiet Place: Day One",
+          "overview": "As New York City is invaded by alien creatures who hunt by sound, a woman named Sam fights to survive with her cat.",
+          "popularity": 1046.519,
+          "poster_path": "/hU42CRk14JuPEdqZG3AWmagiPAP.jpg",
+          "release_date": "2024-06-26",
+          "title": "A Quiet Place: Day One",
+          "video": false,
+          "vote_average": 6.873,
+          "vote_count": 1442
+        }
+      ]
     },
     {
       "id": "2",

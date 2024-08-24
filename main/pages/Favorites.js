@@ -70,9 +70,10 @@ function Favorites() {
               className="movie-card">
               <img src={`https://image.tmdb.org/t/p/w200${movie.poster_path}`} alt={movie.title} />
               <div className='movie-content'>
-                <h3>{movie.title}</h3>
-                <h4>{movie.release_date.slice(0, 4)}</h4>
-                <p>{movie.overview}</p>
+                <h3>{movie.title} - {movie.release_date.slice(0, 4)}</h3>
+                {
+                (movie.overview.length > 420) ? <p>{movie.overview.slice(0,420)}...</p> : <p>{movie.overview}</p>
+                }
               </div>
               <div className='movie-remove'>
                 <button
@@ -84,7 +85,9 @@ function Favorites() {
             </div>
           ))
         ) : (
-          <div>No favorite movies found.</div>
+          <div className='no-fav-movie'>
+            <h3 >No favorite movies found.</h3>
+            </div>
         )}
       </div>
     </div>

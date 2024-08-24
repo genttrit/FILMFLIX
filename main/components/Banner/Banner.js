@@ -4,7 +4,7 @@ import Nav from "../Nav/Nav";
 import Details from "../Detalis/Details";
 
 
-function Banner({ details, handleDetailsPopUp, username, setUsername, bannerMovie }) {
+function Banner({ details, handleDetailsPopUp, username, setUsername, bannerMovie,handleFavoriteMoviesButton }) {
   return (
 
     <>
@@ -19,7 +19,7 @@ function Banner({ details, handleDetailsPopUp, username, setUsername, bannerMovi
             {/* <p>{bannerMovie.overview}</p> */}
           </div>
           <div className="btnContainer">
-            <button className="btnFavorite">
+            <button className="btnFavorite" onClick={e => handleFavoriteMoviesButton(e,username, bannerMovie)}>
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 height="32px"
