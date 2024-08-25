@@ -24,6 +24,24 @@
           "video": false,
           "vote_average": 6.873,
           "vote_count": 1442
+        },
+        {
+          "adult": false,
+          "backdrop_path": "/rSRA1p4e3laAAJflzdgtqNlx27Y.jpg",
+          "genre_ids": [
+            28
+          ],
+          "id": 1049574,
+          "original_language": "en",
+          "original_title": "Darkness of Man",
+          "overview": "Russell Hatch, an Interpol operative who takes on the role of father figure to Jayden, the son of an informant killed in a routine raid gone wrong. Years later, Hatch finds himself protecting Jayden and his grandfather from a group of merciless gangs in an all-out turf war, stopping at nothing to protect Jayden and fight anyone getting in his way.",
+          "popularity": 1241.566,
+          "poster_path": "/fzmQ7mMYlBE8q459F6x9BAGgmj9.jpg",
+          "release_date": "2024-05-07",
+          "title": "Darkness of Man",
+          "video": false,
+          "vote_average": 6.571,
+          "vote_count": 85
         }
       ]
     },

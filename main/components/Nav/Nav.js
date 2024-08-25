@@ -68,7 +68,7 @@ function Nav({ username, setUsername }) {
         </li>
         <li>
           <Link className="link" to="/favorites">
-            My Favorites
+            Favorites
           </Link>
         </li>
         <li>

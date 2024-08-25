@@ -5,6 +5,7 @@
     align-items: center;
     text-decoration: none;
     font-size: 1.2rem;
+    width: 100%;
     border: none;
     height: 75px;
     // padding: 10px 10px 0 10px;
@@ -110,4 +111,34 @@
     .logIn, .logOut{
         width: 100px;
     }
+
+    @media (max-width: 920px) { 
+
+        font-size: 0.7rem;
+        width: 100vw;
+
+        .logo{
+            font-size: 1.5rem !important;
+        }
+
+        li{
+            padding: 0 10px !important;
+        }
+
+
+        .avatar, .loggedMsg{
+            display: none;
+        }
+
+        .loggedInfoContainer{
+            width: 10px;
+        }
+
+
+        
+    }
 }
+
+
+
+

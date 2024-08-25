@@ -13,8 +13,11 @@ function CategoryCard({category, title,details, username, handleDetailsPopUp, ha
   const baseUrl = 'https://api.themoviedb.org/3';
   // const category = 'movie/popular';
   const [movies, setMovies]=useState([]);
+  const [windowDesktop, setWindowDesktop] = useState(true);
 
   useEffect(() => {
+    (window.innerWidth > 920) ? setWindowDesktop(true) : setWindowDesktop(false);
+    
     const fetchInfo = async () => {
         try {
             const resp = await fetch(`${baseUrl}/${category}?api_key=${apiKey}`);
@@ -54,7 +57,7 @@ function SamplePrevArrow(props) {
 
 
 
-let settings = {
+let setting1280px = {
   dots: false,
   infinite: true,
   slidesToShow: 5,
@@ -62,6 +65,22 @@ let settings = {
   nextArrow: <SampleNextArrow />,
   prevArrow: <SamplePrevArrow />
 }
+
+let setting920px = {
+  dots: false,
+  infinite: true,
+  slidesToShow: 2,
+  slidesToScroll: 1,
+  nextArrow: <SampleNextArrow />,
+  prevArrow: <SamplePrevArrow />
+}
+
+
+
+let settings = {};
+
+
+(windowDesktop) ? settings = setting1280px : settings = setting920px;
 
   return (
     <div className="CategoryCardContainer">

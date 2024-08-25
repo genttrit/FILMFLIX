@@ -2,10 +2,11 @@ import React, {useEffect, useState, useContext} from 'react'
 import NavLogIn from '../components/NavLogIn/NavLogIn'
 import LogInBanner from '../components/LogInBanner/LogInBanner'
 import { AppContext } from '../app';
+import'../styles/LogIn.scss'
 
 function LogIn() {
   const [userData, setUserData] = useState([]);
-  
+
   const {username, setUsername} = useContext(AppContext);
 
   // const handleSetUsername = (usernameFromChild) => {
@@ -30,7 +31,7 @@ function LogIn() {
 
 
   return (
-    <div className='logInContainer'>
+    <div className='LogInContainer'>
       <LogInBanner 
                   userData={userData} 
                   // setUsername={setUsername}
