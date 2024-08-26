@@ -13,10 +13,10 @@ function CategoryCard({category, title,details, username, handleDetailsPopUp, ha
   const baseUrl = 'https://api.themoviedb.org/3';
   // const category = 'movie/popular';
   const [movies, setMovies]=useState([]);
-  const [windowDesktop, setWindowDesktop] = useState(true);
+  const [windowDesktop, setWindowDesktop] = useState(window.innerWidth > 920);
 
   useEffect(() => {
-    (window.innerWidth > 920) ? setWindowDesktop(true) : setWindowDesktop(false);
+    // (window.innerWidth > 920) ? setWindowDesktop(true) : setWindowDesktop(false);
     
     const fetchInfo = async () => {
         try {
@@ -31,7 +31,19 @@ function CategoryCard({category, title,details, username, handleDetailsPopUp, ha
         }
     }
     fetchInfo();
-}, [])
+}, []);
+
+useEffect(() => {
+  const handleResize = () => {
+    setWindowDesktop(window.innerWidth > 920);
+  };
+
+  window.addEventListener('resize', handleResize);
+
+  return () => {
+    window.removeEventListener('resize', handleResize);
+  };
+}, []);
 
 function SampleNextArrow(props) {
   const { className, style, onClick } = props;
@@ -79,8 +91,8 @@ let setting920px = {
 
 let settings = {};
 
-
 (windowDesktop) ? settings = setting1280px : settings = setting920px;
+
 
   return (
     <div className="CategoryCardContainer">
