@@ -83,3 +83,16 @@
         }
     }
 }
+
+@media (max-width: 920px){
+     .containerDetalis{
+        width: 90vw;
+        background-size: cover; 
+         background-position: center;
+     }
+
+     .contentContainer{
+        width: 85vw !important;
+        margin: 0 auto;
+     }
+}

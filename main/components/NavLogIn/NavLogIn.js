@@ -14,7 +14,7 @@ function NavLogIn() {
   };
 
   return (
-    <nav className="navContainer">
+    <nav className="navContainerLogIn">
       <ul>
         <li>
           <Link className="link" to="/">
