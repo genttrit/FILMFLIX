@@ -4,7 +4,46 @@
       "id": "1",
       "username": "admin",
       "password": "admin",
-      "favorites": []
+      "favorites": [
+        {
+          "adult": false,
+          "backdrop_path": "/lKsHyNJFr47Pgz3uxnnMqDU1bx0.jpg",
+          "genre_ids": [
+            18,
+            53,
+            10770
+          ],
+          "id": 1027497,
+          "original_language": "en",
+          "original_title": "Hello",
+          "overview": "An emotionally unavailable flight attendant meets a potential love interest and later finds out that her \"perfect guy\" has ulterior motives. As the clock ticks down on New Year's Eve, she must fight to keep her murdered ex-boyfriend's secrets or find herself dead.",
+          "popularity": 6.544,
+          "poster_path": "/ra2UvHNvZ1oaneSa96I48G4sQ9N.jpg",
+          "release_date": "2022-09-22",
+          "title": "Hello",
+          "video": false,
+          "vote_average": 6.292,
+          "vote_count": 166
+        },
+        {
+          "adult": false,
+          "backdrop_path": "/bNYxr3GGXRthtDRFCnloXO4r3xC.jpg",
+          "genre_ids": [
+            35
+          ],
+          "id": 20365,
+          "original_language": "hi",
+          "original_title": "Hello",
+          "overview": "Call-center workers receive a phone call from God.",
+          "popularity": 10.671,
+          "poster_path": "/qpN7Td4djkQp4vFDjaGGAWgueTQ.jpg",
+          "release_date": "2008-10-10",
+          "title": "Hello",
+          "video": false,
+          "vote_average": 5.677,
+          "vote_count": 127
+        }
+      ]
     },
     {
       "id": "2",
